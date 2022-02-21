@@ -19,7 +19,7 @@ definitions:
 parameters:
   - in: "body"
     name: "body"
-    description: "Movie object that needs to be added to the store"
+    description: "Movie object that needs to be added to the database"
     required: true
     schema:
       $ref: "#/definitions/Movie"

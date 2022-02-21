@@ -8,6 +8,7 @@ flask = "*"
 sqlalchemy = "*"
 flask-sqlalchemy = "*"
 flask-testing = "*"
+flasgger = "*"
 
 [dev-packages]
 

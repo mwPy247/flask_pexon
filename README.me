@@ -1,16 +1,9 @@
-To build the Docker image from the Dockerfile, go to the project directory and run
-docker build .
+To build the image run:
+docker build -t flask_api .
 
 To start the container run:
-docker run -d -t- p 8080:8080 <container_id|container_name>
+docker run -p 8000:8000 -it --rm --name flask_api -v /Users/moritzwolff/Projects/pexon/db:/app/db flask_api
+Note that the -v option is important here to ensure that data persists if the container has to be restarted.
 
-To run the program from inside the container run to get into the container:
-docker exec -it <container_id|container_name> ../bin/sh
-
-From there you can first run all unittests:
-python -m unittest
-
-You can then launch the app:
-python app.py
-
-The app can then be accessed from http://localhost:8080/
+The app can then be accessed from http://localhost:8000/ inside your local browser.
+To read the docs go to http://localhost:8000/apidocs/
