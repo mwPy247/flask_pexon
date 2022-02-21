@@ -16,8 +16,9 @@ variables:
   tag: '$(Build.BuildId)'
 
 stages:
-- stage: Build_and_Test
-  displayName: Build and test stage
+- stage: Build
+  displayName: Build
+  jobs:
   - job: Build
     displayName: Build
     steps:
@@ -28,6 +29,9 @@ stages:
         command: 'build'
         container: 'flask_api'
         Dockerfile: '**/Dockerfile'
+- stage: Test
+  displayName: Test
+  jobs:
   - job: Test
     displayName: Test
     steps:
@@ -35,6 +39,9 @@ stages:
       inputs:
         targetType: 'inline'
         script: 'docker run -p 80:80 --rm flask_api python -m unittest'
+- stage: Push
+  displayName: Push
+  jobs:
   - job: Push
     displayName: Push 
     steps:
