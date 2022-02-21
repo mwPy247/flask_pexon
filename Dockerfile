@@ -4,4 +4,4 @@ COPY Pipfile Pipfile.lock ./
 RUN python -m pip install --upgrade pip && pip install pipenv
 RUN pipenv install --system --deploy --ignore-pipfile
 COPY . ./
-ENTRYPOINT ["python", "app.py"]
+CMD ["python", "app.py"]

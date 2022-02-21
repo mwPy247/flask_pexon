@@ -87,4 +87,4 @@ app.add_url_rule('/', view_func=HelloAPI.as_view('root'), methods=['GET'])
 
 if __name__ == '__main__':
     db.create_all()
-    app.run(host="0.0.0.0", port=80)
+    app.run(host="0.0.0.0", port=8000)
