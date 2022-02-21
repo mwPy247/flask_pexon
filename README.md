@@ -6,7 +6,7 @@ To build the image run:
 `docker build -t flask_api .`
 
 Run unittests:
-`docker run --rm --name flas_api_test flask_api python -m unittest`
+`docker run --rm --name flask_api_test flask_api python -m unittest`
 
 To start the container run:
 `docker run -p 8000:8000 -it --rm --name flask_api -v db:/app/db flask_api python app.py`
