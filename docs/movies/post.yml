@@ -1,0 +1,30 @@
+Example endpoint inserting a movies into the database.
+---
+definitions:
+  Movie:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        example: 0
+      director:
+        type: "string"
+        example: "example_director"
+      quantity:
+        type: "string"
+        example: "example_language"
+      title:
+        type: "string"
+        example: "example_title"
+parameters:
+  - in: "body"
+    name: "body"
+    description: "Movie object that needs to be added to the store"
+    required: true
+    schema:
+      $ref: "#/definitions/Movie"
+responses:
+  201:
+    description: The movie has been inserted successfully into the database
+  422:
+    description: The request could not be completed because empty strings were passed as arguments.
