@@ -1,7 +1,7 @@
 """ The module provides basic logging capabilities. """
-import functools
-import os
 import logging
+import os
+import functools
 import traceback
 
 LOG_FILE = os.path.dirname(os.path.abspath(__file__)) + '/app.log'  # Set path to log file
@@ -38,11 +38,7 @@ def configure_logger(log_level='info'):
 
 def log_factory(level='info'):
     """
-    The function is a parameterized decorator.
-    It takes a logging level as a parameter and initializes the logger accordingly.
-    The decorator returns a wrapper function that writes to "app.log" before the beginning
-    and after the beginning of every decorated function execution. If exceptions occur,
-    the stacktrace is printed to the log file.
+    Returns a logging decorator for implementing basic logging capabilities.
 
 
     :param
@@ -66,3 +62,7 @@ def log_factory(level='info'):
             return value
         return wrapper
     return log
+
+
+
+

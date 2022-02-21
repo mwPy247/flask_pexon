@@ -11,7 +11,7 @@ Run unittests:
 `docker run --rm flask_api python -m unittest`
 
 To run the container execute:
-`docker run -p 80:80 --rm --name flask_api -v db:/app/db flask_api`
+`docker run -p 80:80 --rm --name flask_api -v db:/app/db -v $(pwd)/log:/app/log flask_api`
 Note that the -v option is important here to ensure that data persists if the container has to be restarted. Note also to check that port 80 is free on your host machine.
 
 You can now use the api on http://localhost:80 (e.g. via Postman or via Curl).
@@ -20,7 +20,7 @@ To insert a movie execute `curl localhost/movies/ -d director="x" -d title="y" -
 To see the movie: `curl localhost/movies/`
 
 Delete the database if you want to start from a clean slate:
-`docker stop flask_api && docker volume rm -f db`
+`docker volume rm -f db`
 
 ## Access API from local browser
 

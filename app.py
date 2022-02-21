@@ -1,9 +1,8 @@
 """
 The module "app" is the central entrypoint of the API.
 It implements one GET-method for the path "/"
-and one GET- and one POST-method for the path "/movies".
+and one GET- and one POST-method for the path "/movies/".
 """
-
 from flask import Flask, Response, request, jsonify
 from flask.views import MethodView
 from flasgger import Swagger
@@ -12,24 +11,26 @@ from db.models import Movie, db
 from log.logger import log_factory
 
 
+# App Configuration:
 app = Flask(__name__)
-app.config['SWAGGER'] = {
+app.config['SWAGGER'] = {  # Setup doc folder parsed automatically by flasgger
     'title': 'Application Documentation',
-    'doc_dir': './docs/'  # Setup doc folder parsed automatically by flasgger
+    'doc_dir': './docs/'
 }
 app.config.from_object('config.Dev')  # Set dev-configuration
 db.init_app(app)  # Initialize the app with dev-database
-app.app_context().push()  # Set context
-swagger = Swagger(app)  # Initialize flasgger
+app.app_context().push()
+swagger = Swagger(app)
 
 
+# Application Core:
 class HelloAPI(MethodView):
     """ A simple Flask method view class for displaying "Hello World" via GET. """
 
     @log_factory(level='info')
     def get(self):
         """
-        A function returning a constant.
+        The 'Hello World' entrypoint.
 
         :return:
         str - the "Hello World" message
