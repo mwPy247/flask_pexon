@@ -1,0 +1,5 @@
+Example endpoint returning a simple "Hello World" message.
+---
+responses:
+  200:
+    description: A simple "Hello World" message.

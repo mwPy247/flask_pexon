@@ -1,0 +1,16 @@
+To build the Docker image from the Dockerfile, go to the project directory and run
+docker build .
+
+To start the container run:
+docker run -d -t- p 8080:8080 <container_id|container_name>
+
+To run the program from inside the container run to get into the container:
+docker exec -it <container_id|container_name> ../bin/sh
+
+From there you can first run all unittests:
+python -m unittest
+
+You can then launch the app:
+python app.py
+
+The app can then be accessed from http://localhost:8080/

@@ -1,0 +1,28 @@
+Example endpoint returning all the movies in the database.
+---
+definitions:
+  Movies:
+    type: "object"
+    properties:
+      movie:
+        $ref: "#/definitions/Movie"
+  Movie:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        example: 0
+      director:
+        type: "string"
+        example: "example_director"
+      quantity:
+        type: "string"
+        example: "example_language"
+      title:
+        type: "string"
+        example: "example_title"
+responses:
+  200:
+    description: An object containing all the movies in the database
+    schema:
+      $ref: '#/definitions/Movies'
