@@ -34,7 +34,7 @@ class HelloAPI(MethodView):
         :return:
         str - the "Hello World" message
         """
-        return "Hello, World!"
+        return "Hello World"
 
 
 class MoviesAPI(MethodView):
