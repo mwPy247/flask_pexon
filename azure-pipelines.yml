@@ -10,7 +10,7 @@ resources:
 variables:
   # Container registry service connection established during pipeline creation
   dockerRegistryServiceConnection: '822018bc-d43c-49a6-a2ca-ffdf46108c5f'
-  imageRepository: 'api'
+  imageRepository: 'flask_api'
   containerRegistry: 'registrierung1.azurecr.io'
   dockerfilePath: '$(Build.SourcesDirectory)/Dockerfile'
   tag: '$(Build.BuildId)'
@@ -27,6 +27,7 @@ stages:
         containerRegistry: 'registrierung1'
         repository: 'flask_api'
         command: 'build'
+        container: 'flask_api'
         Dockerfile: '**/Dockerfile'
   - job: Test
     displayName: Test
@@ -34,7 +35,7 @@ stages:
     - task: Bash@3
       inputs:
         targetType: 'inline'
-        script: 'docker run -p 80:80 --rm api python -m unittest'
+        script: 'docker run -p 80:80 --rm flask_api python -m unittest'
   - job: Push
     displayName: Push 
     steps:
