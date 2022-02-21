@@ -1,0 +1,46 @@
+# Docker
+# Build and push an image to Azure Container Registry
+# https://docs.microsoft.com/azure/devops/pipelines/languages/docker
+
+pool: "local"
+
+resources:
+- repo: self
+
+variables:
+  # Container registry service connection established during pipeline creation
+  dockerRegistryServiceConnection: '822018bc-d43c-49a6-a2ca-ffdf46108c5f'
+  imageRepository: 'flask_api'
+  containerRegistry: 'registrierung1.azurecr.io'
+  dockerfilePath: '$(Build.SourcesDirectory)/Dockerfile'
+  tag: '$(Build.BuildId)'
+
+stages:
+- stage: Build_and_Test
+  displayName: Build and test stage
+  jobs:
+  - job: Build
+    displayName: Build
+    steps:
+    - task: Docker@2
+      inputs:
+        containerRegistry: 'registrierung1'
+        repository: 'flask_api'
+        command: 'build'
+        container: 'flask_api'
+        Dockerfile: '**/Dockerfile'
+  - job: Test
+    displayName: Test
+    steps:
+    - task: Bash@3
+      inputs:
+        targetType: 'inline'
+        script: 'docker run -p 80:80 --rm flask_api python -m unittest'
+  - job: Push
+    displayName: Push 
+    steps:
+    - task: Docker@2
+      inputs:
+        containerRegistry: 'registrierung1'
+        repository: 'flask_api'
+        command: 'push'
